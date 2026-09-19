@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2K31N68GT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-H2K31N68GT');
+      gtag('config', 'AW-402124619');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Diagnóstico inicial de regularização de imóveis da g Engenharia e Projetos." />
+    <meta name="theme-color" content="#3b2a22" />
+    <title>Diagnóstico de Regularização | g Engenharia e Projetos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="diagnostico.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Cabeçalho">
+      <a class="brand" href="index.html" aria-label="g Engenharia e Projetos — voltar ao site">
+        <span class="brand-mark">g<span>.</span></span>
+        <span class="brand-name">Engenharia<br />e Projetos</span>
+      </a>
+      <a class="location" href="index.html">← Voltar ao site</a>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <span class="eyebrow">Diagnóstico inicial gratuito</span>
+          <h1>Seu imóvel está regular em <em>todas</em> as etapas?</h1>
+          <p class="hero-lead">Responda algumas perguntas e entenda quais pontos podem exigir atenção na Prefeitura, na Receita Federal e no Cartório.</p>
+          <div class="hero-actions">
+            <button class="button button-primary" data-start>Iniciar diagnóstico <span aria-hidden="true">→</span></button>
+            <span class="time-note"><span aria-hidden="true">◷</span> Cerca de 3 minutos</span>
+          </div>
+          <div class="trust-row" aria-label="Características do diagnóstico">
+            <span>Orientação objetiva</span>
+            <span>Sem compromisso</span>
+            <span>Resultado imediato</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-card">
+            <svg viewBox="0 0 540 410" role="img" aria-label="Traçado arquitetônico de uma residência">
+              <path class="plot" d="M33 355H502M72 354V187l174-116 219 141v142M132 354V225l115-76 149 95v110M246 72v282M397 243v111M102 341h327M174 354v-70h53v70M284 354v-86h71v86M132 225l115 56 149-37M72 187l174 94 219-69" />
+              <path class="accent-line" d="M53 355V175L246 46l239 154" />
+              <circle class="plot-dot" cx="246" cy="46" r="6" />
+            </svg>
+            <div class="stamp"><strong>3</strong><span>frentes<br />analisadas</span></div>
+            <div class="blueprint-label">Leitura preliminar<br />da situação documental</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="diagnostic-section" id="diagnostico" aria-labelledby="diagnostic-title">
+        <div class="section-intro">
+          <span class="eyebrow">Mapa da regularização</span>
+          <h2 id="diagnostic-title">Vamos identificar onde seu imóvel pode precisar de atenção.</h2>
+          <p>As respostas geram uma orientação inicial. Cada município e cada imóvel podem exigir documentos e análises específicas.</p>
+        </div>
+
+        <div class="wizard-shell" id="wizard-shell">
+          <div class="wizard-header">
+            <div>
+              <span class="step-label" id="step-label">Preparação</span>
+              <h3 id="step-title">Antes de começar</h3>
+            </div>
+            <span class="step-count" id="step-count">0 de 8</span>
+          </div>
+          <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+
+          <div class="wizard-body" id="wizard-body" aria-live="polite">
+            <div class="welcome-panel">
+              <div class="welcome-icon" aria-hidden="true">⌂</div>
+              <h4>Você não precisa ter todos os documentos em mãos.</h4>
+              <p>Quando não souber uma resposta, marque “Não sei”. Isso também ajuda a indicar o que precisa ser conferido.</p>
+              <button class="button button-primary" data-begin>Começar agora <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+
+          <div class="wizard-nav" id="wizard-nav" hidden>
+            <button class="button button-ghost" id="back-button" type="button">← Voltar</button>
+            <button class="button button-primary" id="next-button" type="button" disabled>Continuar →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="process-section" id="como-funciona" aria-labelledby="process-title">
+        <div class="process-heading">
+          <span class="eyebrow">Uma sequência coordenada</span>
+          <h2 id="process-title">Regularizar não é apenas obter o Habite-se.</h2>
+          <p>Em muitos casos, a documentação percorre etapas relacionadas. A situação municipal costuma fundamentar as providências fiscais e, depois, a atualização da matrícula.</p>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span class="process-number">01</span>
+            <div><h3>Prefeitura</h3><p>Conferência cadastral, projeto, licenças e documento de conclusão, conforme o caso.</p></div>
+          </article>
+          <article>
+            <span class="process-number">02</span>
+            <div><h3>Receita Federal</h3><p>CNO/CEI, aferição da obra, contribuições e certidão fiscal aplicável.</p></div>
+          </article>
+          <article>
+            <span class="process-number">03</span>
+            <div><h3>Cartório</h3><p>Averbação da construção e atualização da matrícula do imóvel.</p></div>
+          </article>
+        </div>
+        <div class="technical-note">
+          <span aria-hidden="true">i</span>
+          <p>Este diagnóstico tem caráter informativo e preliminar. Não garante aprovação, emissão de certidões, redução tributária ou viabilidade de regularização e não substitui análise técnica, fiscal, jurídica ou registral.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand brand-footer" href="index.html">
+        <span class="brand-mark">g<span>.</span></span>
+        <span class="brand-name">Engenharia<br />e Projetos</span>
+      </a>
+      <p>Engenharia, arquitetura e regularização de imóveis.</p>
+      <p class="footer-small">© <span id="year"></span> g Engenharia e Projetos · Sorocaba/SP</p>
+    </footer>
+
+    <template id="result-template">
+      <div class="result-panel">
+        <div class="result-hero">
+          <span class="result-kicker">Seu diagnóstico inicial</span>
+          <h3 id="result-headline"></h3>
+          <p id="result-summary"></p>
+        </div>
+        <div class="result-cards" id="result-cards"></div>
+        <div class="next-steps">
+          <div>
+            <span class="eyebrow">Próximo passo recomendado</span>
+            <h4>Confirme o cenário com uma avaliação profissional.</h4>
+            <p>Uma análise dos documentos e das características do imóvel permite definir o caminho correto, estimar custos e evitar etapas desnecessárias.</p>
+          </div>
+          <ul class="document-list" id="document-list"></ul>
+          <a class="button button-whatsapp" id="whatsapp-button" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="whatsapp-icon" aria-hidden="true">◉</span> Solicitar avaliação profissional
+          </a>
+          <p class="whatsapp-note">O resumo será preparado e enviado diretamente ao WhatsApp comercial da g Engenharia e Projetos.</p>
+        </div>
+        <div class="result-actions">
+          <button class="button button-ghost" id="restart-button" type="button">Refazer diagnóstico</button>
+          <button class="text-button" id="print-button" type="button">Imprimir resultado</button>
+        </div>
+      </div>
+    </template>
+
+    <script src="diagnostico-logic.js"></script>
+    <script src="diagnostico.js"></script>
+  </body>
+</html>
