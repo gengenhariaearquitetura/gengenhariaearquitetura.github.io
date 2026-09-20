@@ -254,7 +254,7 @@ function renderResult() {
   const cityLabels = { sorocaba: "Sorocaba", region: "Região de Sorocaba", other: "Outro município" };
   const typeLabels = { residential: "Residencial", commercial: "Comercial/serviços", industrial: "Industrial", mixed: "Uso misto" };
   const message = [
-    "Olá! Fiz o Diagnóstico de Regularização da g Engenharia e Projetos e gostaria de solicitar uma avaliação profissional.",
+    "Olá! Fiz o Diagnóstico de Regularização da g Engenharia e Arquitetura e gostaria de solicitar uma avaliação profissional.",
     "",
     `Imóvel: ${typeLabels[state.answers.type]} — ${cityLabels[state.answers.city]}.`,
     statusLine,

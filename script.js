@@ -26,12 +26,24 @@ function voltar() { indice = (indice - 1 + portfolio.length) % portfolio.length;
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentNav = document.querySelector("body > nav:not(.site-nav)");
-  if (currentNav && !currentNav.querySelector('a[href="diagnostico.html"]')) {
-    const diagnosticLink = document.createElement("a");
-    diagnosticLink.href = "diagnostico.html";
-    diagnosticLink.className = "nav02 diagnostic-nav-link";
-    diagnosticLink.textContent = "Diagnóstico";
-    currentNav.appendChild(diagnosticLink);
+  if (currentNav) {
+    const filename = window.location.pathname.split("/").pop() || "index.html";
+    const activeFile = filename.startsWith("post") ? "blog.html" : filename;
+    const links = [
+      ["index.html", "Início"],
+      ["fazemos.html", "O que fazemos"],
+      ["trabalhos.html", "Trabalhos realizados"],
+      ["historia.html", "Quem somos"],
+      ["blog.html", "Nosso Blog"],
+      ["contato.html", "Contato"],
+      ["diagnostico.html", "Diagnóstico de regularização"]
+    ];
+    currentNav.innerHTML = links.map(([href, label]) => {
+      const active = href === activeFile ? " ativo" : "";
+      const diagnostic = href === "diagnostico.html" ? " diagnostic-nav-link" : "";
+      const current = href === activeFile ? ' aria-current="page"' : "";
+      return `<a class="nav02${active}${diagnostic}" href="${href}"${current}>${label}</a>`;
+    }).join("");
   }
   const nav = document.querySelector(".site-nav");
   const toggle = document.querySelector(".menu-toggle");
