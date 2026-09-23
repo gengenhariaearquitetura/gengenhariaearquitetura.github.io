@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ["historia.html", "Quem somos"],
       ["blog.html", "Nosso Blog"],
       ["contato.html", "Contato"],
+      ["checklist.html", "Checklist de projeto"],
       ["diagnostico.html", "Diagnóstico de regularização"]
     ];
     currentNav.innerHTML = links.map(([href, label]) => {
@@ -54,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.classList.toggle("is-open", !open);
     });
   }
-  if (!document.querySelector(".floating-whatsapp")) {
+  if (!document.querySelector(".floating-whatsapp") && !document.body.classList.contains("checklist-page")) {
     const whatsapp = document.createElement("a");
     whatsapp.className = "floating-whatsapp";
     whatsapp.href = "https://wa.me/5515996708642?text=Olá,%20vim%20pelo%20site%20da%20g%20Engenharia.";

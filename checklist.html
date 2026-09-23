@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#17384f">
+  <meta name="description" content="Checklist inicial para orçamento de projetos arquitetônicos e complementares da g Engenharia e Arquitetura.">
+  <title>Checklist inicial | g Engenharia e Arquitetura</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="checklist.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="new-home checklist-page">
+<div class="checklist-header">
+  <header class="site-header" id="inicio">
+    <a class="brand" href="index.html" aria-label="g Engenharia e Arquitetura — início">
+      <span class="brand-mark">g<span>.</span></span>
+      <span class="brand-name">Engenharia<br>e Arquitetura</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">
+      <span></span><span></span><span></span>
+      <span class="sr-only">Abrir menu</span>
+    </button>
+    <nav class="site-nav" id="main-navigation" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="fazemos.html">O que fazemos</a>
+      <a href="trabalhos.html">Trabalhos realizados</a>
+      <a href="historia.html">Quem somos</a>
+      <a href="blog.html">Nosso Blog</a>
+      <a href="contato.html">Contato</a>
+      <a href="checklist.html" aria-current="page">Checklist de projeto</a>
+      <a class="nav-cta" href="diagnostico.html">Diagnóstico de regularização</a>
+    </nav>
+  </header>
+</div>
+  <main class="shell">
+    <aside class="intro">
+      <div class="eyebrow">Seu projeto começa aqui</div>
+      <h1>Conte-nos como você imagina seu imóvel.</h1>
+      <p>Com estas informações, nossa equipe entenderá melhor suas necessidades e preparará um orçamento mais preciso.</p>
+      <div class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg><span>Seus dados serão usados somente para analisar seu projeto e entrar em contato com você.</span></div>
+    </aside>
+    <section class="card" aria-label="Checklist inicial do projeto">
+      <div class="topbar"><div class="topline"><span class="step-label">Seus dados</span><span class="counter">Etapa 1 de 10</span></div><div class="progress" aria-label="Progresso"><span></span></div></div>
+      <form id="projectForm" novalidate>
+        <section class="step active" data-title="Seus dados">
+          <h2>Vamos começar?</h2><p class="lead">Informe como podemos identificar e responder à sua solicitação.</p>
+          <div class="grid">
+            <div class="field full required"><label for="name">Nome completo</label><input id="name" name="Nome" type="text" autocomplete="name" required placeholder="Seu nome"><span class="error">Informe seu nome.</span></div>
+            <div class="field required"><label for="phone">WhatsApp</label><input id="phone" name="WhatsApp do cliente" type="tel" autocomplete="tel" required placeholder="(15) 99999-9999"><span class="error">Informe seu WhatsApp.</span></div>
+            <div class="field"><label for="email">E-mail <span class="optional">(opcional)</span></label><input id="email" name="E-mail" type="email" autocomplete="email" placeholder="voce@email.com"><span class="error">Confira o endereço de e-mail.</span></div>
+          </div>
+        </section>
+        <section class="step" data-title="Dados do terreno">
+          <h2>Dados do terreno</h2><p class="lead">Localização, dimensões e características principais.</p>
+          <div class="grid">
+            <div class="field full required"><label for="address">Endereço completo</label><input id="address" name="Endereço do terreno" type="text" required placeholder="Rua, número, bairro, cidade e estado"><span class="error">Informe o endereço ou a localização aproximada.</span></div>
+            <div class="field full required"><span class="group-label">O terreno está em</span><div class="choices"><div class="choice"><input type="radio" id="loc1" name="Local do terreno" value="Loteamento" required><label for="loc1">Loteamento</label></div><div class="choice"><input type="radio" id="loc2" name="Local do terreno" value="Condomínio"><label for="loc2">Condomínio</label></div><div class="choice"><input type="radio" id="loc3" name="Local do terreno" value="Área rural"><label for="loc3">Área rural</label></div></div><span class="error">Selecione uma opção.</span></div>
+            <div class="field"><label for="landArea">Área do terreno (m²)</label><input id="landArea" name="Área do terreno" type="number" inputmode="decimal" min="1" placeholder="Ex. 250"></div>
+            <div class="field"><label for="dimensions">Dimensões</label><input id="dimensions" name="Dimensões do terreno" type="text" placeholder="Ex. 10 x 25 m"></div>
+            <div class="field full"><span class="group-label">Topografia</span><div class="choices"><div class="choice"><input type="radio" id="top1" name="Topografia" value="Plana"><label for="top1">Plana</label></div><div class="choice"><input type="radio" id="top2" name="Topografia" value="Leve declive"><label for="top2">Leve declive</label></div><div class="choice"><input type="radio" id="top3" name="Topografia" value="Aclive acentuado"><label for="top3">Aclive acentuado</label></div><div class="choice"><input type="radio" id="top4" name="Topografia" value="Não sei informar"><label for="top4">Não sei informar</label></div></div></div>
+            <div class="field full"><span class="group-label">Já possui levantamento topográfico?</span><div class="choices"><div class="choice"><input type="radio" id="survey1" name="Levantamento topográfico" value="Sim"><label for="survey1">Sim</label></div><div class="choice"><input type="radio" id="survey2" name="Levantamento topográfico" value="Não"><label for="survey2">Não</label></div></div></div>
+          </div>
+        </section>
+        <section class="step" data-title="Documentação">
+          <h2>Documentação</h2><p class="lead">Uma informação rápida sobre a situação do imóvel.</p>
+          <div class="field required"><span class="group-label">Possui matrícula do imóvel?</span><div class="choices"><div class="choice"><input type="radio" id="doc1" name="Matrícula do imóvel" value="Sim" required><label for="doc1">Sim</label></div><div class="choice"><input type="radio" id="doc2" name="Matrícula do imóvel" value="Não"><label for="doc2">Não</label></div><div class="choice"><input type="radio" id="doc3" name="Matrícula do imóvel" value="Não sei informar"><label for="doc3">Não sei informar</label></div></div><span class="error">Selecione uma opção.</span></div>
+        </section>
+        <section class="step" data-title="Tipo de projeto">
+          <h2>Tipo de projeto desejado</h2><p class="lead">Conte-nos o perfil da construção que você está planejando.</p>
+          <div class="grid">
+            <div class="field full required"><span class="group-label">Tipo de construção</span><div class="choices"><div class="choice"><input type="radio" id="type1" name="Tipo de construção" value="Residência unifamiliar" required><label for="type1">Residência unifamiliar</label></div><div class="choice"><input type="radio" id="type2" name="Tipo de construção" value="Sobrado"><label for="type2">Sobrado</label></div><div class="choice"><input type="radio" id="type3" name="Tipo de construção" value="Comércio"><label for="type3">Comércio</label></div><div class="choice"><input type="radio" id="type4" name="Tipo de construção" value="Prédio / multifamiliar"><label for="type4">Prédio / multifamiliar</label></div><div class="choice"><input type="radio" id="type5" name="Tipo de construção" value="Outro" data-toggle="otherType"><label for="type5">Outro</label></div></div><div class="conditional" id="otherType"><input name="Outro tipo de construção" type="text" placeholder="Descreva o tipo de construção"></div><span class="error">Selecione uma opção.</span></div>
+            <div class="field full required"><span class="group-label">Padrão da obra</span><div class="choices"><div class="choice"><input type="radio" id="std1" name="Padrão da obra" value="Econômico" required><label for="std1">Econômico</label></div><div class="choice"><input type="radio" id="std2" name="Padrão da obra" value="Médio"><label for="std2">Médio</label></div><div class="choice"><input type="radio" id="std3" name="Padrão da obra" value="Alto padrão"><label for="std3">Alto padrão</label></div></div><span class="error">Selecione uma opção.</span></div>
+          </div>
+        </section>
+        <section class="step" data-title="Ambientes">
+          <h2>Programa de necessidades</h2><p class="lead">Quais ambientes e características não podem faltar?</p>
+          <div class="grid">
+            <div class="field"><label for="bedrooms">Quartos</label><input id="bedrooms" name="Quartos" type="number" inputmode="numeric" min="0" placeholder="0"></div><div class="field"><label for="suites">Suítes</label><input id="suites" name="Suítes" type="number" min="0" placeholder="0"></div><div class="field"><label for="bathrooms">Banheiros</label><input id="bathrooms" name="Banheiros" type="number" min="0" placeholder="0"></div><div class="field"><label for="parking">Vagas de garagem</label><input id="parking" name="Vagas de garagem" type="number" min="0" placeholder="0"></div>
+            <div class="field full"><span class="group-label">Deseja incluir</span><div class="choices"><div class="choice"><input type="checkbox" id="room1" name="Ambientes desejados" value="Escritório"><label for="room1">Escritório</label></div><div class="choice"><input type="checkbox" id="room2" name="Ambientes desejados" value="Área gourmet"><label for="room2">Área gourmet</label></div><div class="choice"><input type="checkbox" id="room3" name="Ambientes desejados" value="Piscina"><label for="room3">Piscina</label></div><div class="choice"><input type="checkbox" id="room4" name="Ambientes desejados" value="Lavabo"><label for="room4">Lavabo</label></div><div class="choice"><input type="checkbox" id="room5" name="Ambientes desejados" value="Lavanderia"><label for="room5">Lavanderia</label></div><div class="choice"><input type="checkbox" id="room6" name="Ambientes desejados" value="Closet"><label for="room6">Closet</label></div><div class="choice"><input type="checkbox" id="room7" name="Ambientes desejados" value="Sala de jantar"><label for="room7">Sala de jantar</label></div></div></div>
+            <div class="field full"><label for="dream">Como você imagina o imóvel ideal?</label><textarea id="dream" name="Descrição do imóvel ideal" placeholder="Conte sobre seu estilo, prioridades, rotina da família ou qualquer desejo especial..."></textarea></div>
+          </div>
+        </section>
+        <section class="step" data-title="Informações técnicas">
+          <h2>Informações técnicas iniciais</h2><p class="lead">Dados que nos ajudam a estimar o escopo do trabalho.</p>
+          <div class="grid">
+            <div class="field full"><label for="buildArea">Área estimada de construção (m²)</label><input id="buildArea" name="Área estimada de construção" type="number" min="1" placeholder="Ex. 180"><p class="hint">Se ainda não souber, pode deixar em branco.</p></div>
+            <div class="field full required"><span class="group-label">Número de pavimentos</span><div class="choices"><div class="choice"><input type="radio" id="floor1" name="Pavimentos" value="Térrea" required><label for="floor1">Térrea</label></div><div class="choice"><input type="radio" id="floor2" name="Pavimentos" value="Sobrado"><label for="floor2">Sobrado</label></div><div class="choice"><input type="radio" id="floor3" name="Pavimentos" value="Mais de 2 pavimentos"><label for="floor3">Mais de 2 pavimentos</label></div></div><span class="error">Selecione uma opção.</span></div>
+            <div class="field full required"><span class="group-label">O que pretende contratar?</span><div class="choices"><div class="choice"><input type="radio" id="hire1" name="Modalidade desejada" value="Apenas projeto" required><label for="hire1">Apenas projeto</label></div><div class="choice"><input type="radio" id="hire2" name="Modalidade desejada" value="Projeto + acompanhamento"><label for="hire2">Projeto + acompanhamento</label></div><div class="choice"><input type="radio" id="hire3" name="Modalidade desejada" value="Projeto + execução"><label for="hire3">Projeto + execução</label></div></div><span class="error">Selecione uma opção.</span></div>
+          </div>
+        </section>
+        <section class="step" data-title="Projetos complementares">
+          <h2>Projetos complementares</h2><p class="lead">Marque todos os projetos que deseja incluir no orçamento.</p>
+          <div class="field"><div class="choices"><div class="choice"><input type="checkbox" id="proj1" name="Projetos complementares" value="Estrutural"><label for="proj1">Estrutural</label></div><div class="choice"><input type="checkbox" id="proj2" name="Projetos complementares" value="Elétrico"><label for="proj2">Elétrico</label></div><div class="choice"><input type="checkbox" id="proj3" name="Projetos complementares" value="Hidráulico"><label for="proj3">Hidráulico</label></div><div class="choice"><input type="checkbox" id="proj4" name="Projetos complementares" value="Drenagem"><label for="proj4">Drenagem</label></div><div class="choice"><input type="checkbox" id="proj5" name="Projetos complementares" value="Ar-condicionado"><label for="proj5">Ar-condicionado</label></div><div class="choice"><input type="checkbox" id="proj6" name="Projetos complementares" value="Energia solar"><label for="proj6">Energia solar</label></div><div class="choice"><input type="checkbox" id="proj7" name="Projetos complementares" value="Outro" data-toggle="otherProject"><label for="proj7">Outro</label></div></div><div class="conditional" id="otherProject"><input name="Outro projeto complementar" type="text" placeholder="Qual projeto?"></div></div>
+        </section>
+        <section class="step" data-title="Prazo">
+          <h2>Prazo e momento</h2><p class="lead">Quando você pretende começar a transformar o projeto em realidade?</p>
+          <div class="field required"><div class="choices"><div class="choice"><input type="radio" id="when1" name="Previsão de início" value="Imediato" required><label for="when1">Imediato</label></div><div class="choice"><input type="radio" id="when2" name="Previsão de início" value="Até 3 meses"><label for="when2">Até 3 meses</label></div><div class="choice"><input type="radio" id="when3" name="Previsão de início" value="3 a 6 meses"><label for="when3">3 a 6 meses</label></div><div class="choice"><input type="radio" id="when4" name="Previsão de início" value="Apenas planejando"><label for="when4">Apenas planejando</label></div></div><span class="error">Selecione uma opção.</span></div>
+        </section>
+        <section class="step" data-title="Investimento e prioridades">
+          <h2>Investimento e expectativas</h2><p class="lead">Essas respostas orientam soluções compatíveis com seus objetivos.</p>
+          <div class="grid">
+            <div class="field full required"><span class="group-label">Já possui uma estimativa de investimento?</span><div class="choices"><div class="choice"><input type="radio" id="budget1" name="Possui estimativa de investimento" value="Sim" required data-toggle="budgetValue"><label for="budget1">Sim</label></div><div class="choice"><input type="radio" id="budget2" name="Possui estimativa de investimento" value="Não"><label for="budget2">Não</label></div></div><div class="conditional" id="budgetValue"><input name="Valor aproximado do investimento" type="text" inputmode="decimal" placeholder="Ex. R$ 500.000"></div><span class="error">Selecione uma opção.</span></div>
+            <div class="field full required"><span class="group-label">O que é mais importante no seu projeto?</span><div class="choices"><div class="choice"><input type="checkbox" id="priority1" name="Prioridades" value="Estética"><label for="priority1">Estética</label></div><div class="choice"><input type="checkbox" id="priority2" name="Prioridades" value="Economia"><label for="priority2">Economia</label></div><div class="choice"><input type="checkbox" id="priority3" name="Prioridades" value="Rapidez"><label for="priority3">Rapidez</label></div><div class="choice"><input type="checkbox" id="priority4" name="Prioridades" value="Valorização do imóvel"><label for="priority4">Valorização do imóvel</label></div></div><span class="error">Selecione ao menos uma prioridade.</span></div>
+          </div>
+        </section>
+        <section class="step review" data-title="Revisão">
+          <h2>Revise suas informações</h2><p class="lead">Se estiver tudo certo, envie o checklist para nossa equipe preparar seu orçamento.</p><div class="summary" id="summary"></div>
+          <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+        </section>
+        <section class="success-state" id="successState" aria-live="polite">
+          <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="m5 12 4 4L19 6"/></svg></div>
+          <h2>Informações enviadas!</h2>
+          <p class="lead">Obrigado por compartilhar os dados do seu projeto. A equipe da g Engenharia e Arquitetura analisará as informações e entrará em contato em breve.</p>
+        </section>
+        <div class="actions"><button type="button" class="btn secondary back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>Voltar</button><button type="button" class="btn primary next">Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button></div>
+        <p class="note">Leva cerca de 3 minutos. Nenhum compromisso é gerado pelo envio.</p>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer-new">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">g<span>.</span></span>
+      <span class="brand-name">Engenharia<br>e Arquitetura</span>
+    </a>
+    <div class="footer-links-new">
+      <a href="fazemos.html">O que fazemos</a>
+      <a href="trabalhos.html">Trabalhos realizados</a>
+      <a href="blog.html">Nosso Blog</a>
+      <a href="contato.html">Contato</a>
+      <a href="checklist.html">Checklist de projeto</a>
+    </div>
+    <div class="footer-contact-new">
+      <a href="https://wa.me/5515996708642" target="_blank" rel="noopener noreferrer">(15) 99670-8642</a>
+      <span>Sorocaba e região · SP</span>
+    </div>
+    <p class="footer-legal">© 2026 g Engenharia e Arquitetura. Todos os direitos reservados.</p>
+  </footer>
+  <script>
+    const form=document.querySelector('#projectForm'),steps=[...document.querySelectorAll('.step')],next=document.querySelector('.next'),back=document.querySelector('.back'),progress=document.querySelector('.progress span'),counter=document.querySelector('.counter'),stepLabel=document.querySelector('.step-label');let current=0;
+    const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current));stepLabel.textContent=steps[current].dataset.title;counter.textContent=`Etapa ${current+1} de ${steps.length}`;progress.style.width=`${((current+1)/steps.length)*100}%`;back.hidden=current===0;next.innerHTML=current===steps.length-1?'Enviar checklist':'Continuar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>';window.scrollTo({top:0,behavior:'smooth'});}
+    function validStep(){let ok=true;const step=steps[current];step.querySelectorAll('.invalid').forEach(x=>x.classList.remove('invalid'));step.querySelectorAll('input[required],textarea[required]').forEach(el=>{if(el.type==='radio'){const group=step.querySelectorAll(`input[name="${CSS.escape(el.name)}"]`);if(![...group].some(x=>x.checked)){el.closest('.field').classList.add('invalid');ok=false}}else if(!el.checkValidity()){el.closest('.field').classList.add('invalid');ok=false}});if(current===8&&!step.querySelector('input[name="Prioridades"]:checked')){step.querySelector('input[name="Prioridades"]').closest('.field').classList.add('invalid');ok=false}if(!ok){step.querySelector('.invalid')?.scrollIntoView({behavior:'smooth',block:'center'})}return ok}
+    function values(){const fd=new FormData(form),map=new Map();for(const [k,v] of fd){const val=String(v).trim();if(!val)continue;if(map.has(k))map.set(k,map.get(k)+', '+val);else map.set(k,val)}return map}
+    const groups=[['Contato',['Nome','WhatsApp do cliente','E-mail']],['Terreno',['Endereço do terreno','Local do terreno','Área do terreno','Dimensões do terreno','Topografia','Levantamento topográfico']],['Documentação',['Matrícula do imóvel']],['Projeto',['Tipo de construção','Outro tipo de construção','Padrão da obra']],['Necessidades',['Quartos','Suítes','Banheiros','Vagas de garagem','Ambientes desejados','Descrição do imóvel ideal']],['Escopo técnico',['Área estimada de construção','Pavimentos','Modalidade desejada','Projetos complementares','Outro projeto complementar']],['Prazo e investimento',['Previsão de início','Possui estimativa de investimento','Valor aproximado do investimento','Prioridades']]];
+    function buildSummary(){const m=values(),box=document.querySelector('#summary');box.innerHTML=groups.map(([title,keys])=>{const rows=keys.filter(k=>m.has(k)).map(k=>`<p><b>${esc(k)}:</b> ${esc(m.get(k))}${k.includes('Área')&&!m.get(k).toLowerCase().includes('m²')?' m²':''}</p>`).join('');return rows?`<div class="summary-block"><h3>${title}</h3>${rows}</div>`:''}).join('')}
+    let sending=false,submitted=false;
+    async function sendChecklist(){
+      if(sending||submitted)return;
+      const status=document.querySelector('#copyStatus');
+      status.textContent='Enviando suas informações…';
+      sending=true;next.disabled=true;back.disabled=true;next.textContent='Enviando…';form.setAttribute('aria-busy','true');
+      const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),30000);
+      try{
+        const m=values(),payload={_subject:'Novo checklist — '+(m.get('Nome')||'Cliente')+' | g Engenharia e Arquitetura',_template:'table',_url:'https://gengenhariaearquitetura.github.io/checklist.html'};
+        for(const [title,keys] of groups)for(const key of keys)if(m.has(key))payload[title+' — '+key]=m.get(key)+(key.includes('Área')?' m²':'');
+        if(m.get('E-mail'))payload._replyto=m.get('E-mail');
+        const response=await fetch('https://formsubmit.co/ajax/gmartins.engcivil@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
+        const result=await response.json();
+        if(!response.ok||!(result.success===true||result.success==='true'))throw new Error('Envio não confirmado');
+        submitted=true;steps.forEach(s=>s.classList.remove('active'));
+        document.querySelector('.actions').style.display='none';document.querySelector('.note').style.display='none';
+        document.querySelector('#successState').classList.add('show');
+        const heading=document.querySelector('#successState h2');heading.tabIndex=-1;heading.focus();
+        stepLabel.textContent='Concluído';counter.textContent='Checklist finalizado';progress.style.width='100%';
+        window.scrollTo({top:0,behavior:'smooth'});
+      }catch(error){
+        status.textContent='Não foi possível confirmar o envio. Suas respostas continuam aqui. Tente novamente ou entre em contato pelo e-mail gmartins.engcivil@gmail.com.';
+        status.setAttribute('role','alert');
+      }finally{clearTimeout(timeout);sending=false;form.removeAttribute('aria-busy');if(!submitted){next.disabled=false;back.disabled=false;next.textContent='Tentar enviar novamente';}}
+    }
+    function advance(){if(sending||submitted)return;if(current<steps.length-1){if(!validStep())return;current++;if(current===steps.length-1)buildSummary();update()}else{sendChecklist()}}
+    next.addEventListener('click',advance);back.addEventListener('click',()=>{if(!sending&&!submitted&&current>0){current--;update()}});
+    form.addEventListener('submit',event=>{event.preventDefault();advance()});
+    form.addEventListener('input',e=>{e.target.closest('.invalid')?.classList.remove('invalid');if(e.target.dataset.toggle){const target=document.getElementById(e.target.dataset.toggle);if(e.target.type==='checkbox')target.classList.toggle('show',e.target.checked);else{document.querySelectorAll(`[name="${CSS.escape(e.target.name)}"]`).forEach(r=>{if(r.dataset.toggle)document.getElementById(r.dataset.toggle)?.classList.toggle('show',r.checked)})}}if(e.target.name==='Possui estimativa de investimento'&&e.target.value==='Não')document.getElementById('budgetValue').classList.remove('show')});
+    document.querySelector('#phone').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'').slice(0,11);if(v.length>6)v=`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;else if(v.length>2)v=`(${v.slice(0,2)}) ${v.slice(2)}`;else if(v.length)v=`(${v}`;e.target.value=v});
+    if(document.modelContext?.registerTool){const controller=new AbortController();Promise.resolve(document.modelContext.registerTool({name:'preencher_checklist_projeto',title:'Preencher checklist do projeto',description:'Preenche campos do checklist inicial de projeto e atualiza o formulário visível.',inputSchema:{type:'object',properties:{campos:{type:'object',additionalProperties:{type:'string'}}},required:['campos'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute({campos}){if(!campos||typeof campos!=='object')throw new Error('campos deve ser um objeto');let count=0;for(const [name,value] of Object.entries(campos)){const inputs=[...form.elements].filter(el=>el.name===name);if(!inputs.length)continue;const match=inputs.find(el=>['radio','checkbox'].includes(el.type)&&el.value===value);const el=match||inputs.find(el=>!['radio','checkbox'].includes(el.type));if(el){if(match)el.checked=true;else el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));count++}}return{campos_preenchidos:count}}},{signal:controller.signal})).catch(()=>{})}
+    update();
+  </script>
+</body>
+</html>
