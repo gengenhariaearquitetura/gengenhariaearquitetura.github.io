@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gengenhariaearquitetura.github.io/sitemap.xml
