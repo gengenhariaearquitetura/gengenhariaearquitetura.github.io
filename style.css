@@ -447,3 +447,191 @@ body:not(.new-home) footer p { margin:0; color:inherit; font-size:12px; }
   .artigo > h1 { font-size:34px!important; }
   .article-table { font-size:13px; }
 }
+
+
+/* Correção definitiva do layout dos artigos — desktop, tablet e celular.
+   Usa seletor mais específico que a regra genérica body:not(.new-home) main. */
+body:not(.new-home) main.container.artigo {
+  width:min(940px,calc(100% - 48px));
+  max-width:940px;
+  margin:48px auto 80px;
+  padding:56px clamp(46px,5vw,68px);
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--white);
+  box-shadow:0 18px 55px rgba(21,50,69,.08);
+  overflow:hidden;
+}
+
+body:not(.new-home) main.container.artigo > h1 {
+  max-width:780px;
+  margin:0 0 14px!important;
+}
+
+body:not(.new-home) main.container.artigo .meta {
+  margin:0 0 30px;
+}
+
+body:not(.new-home) main.container.artigo .imagem-blog {
+  width:100%;
+  margin:34px 0 42px;
+}
+
+body:not(.new-home) main.container.artigo .imagem-blog img {
+  display:block;
+  width:100%;
+  max-width:100%;
+  aspect-ratio:5/2;
+  object-fit:cover;
+  border-radius:18px;
+}
+
+body:not(.new-home) main.container.artigo figcaption {
+  padding:0 4px;
+  line-height:1.5;
+}
+
+body:not(.new-home) main.container.artigo > p,
+body:not(.new-home) main.container.artigo > ul,
+body:not(.new-home) main.container.artigo > ol {
+  max-width:100%;
+}
+
+body:not(.new-home) main.container.artigo .article-summary,
+body:not(.new-home) main.container.artigo .article-note,
+body:not(.new-home) main.container.artigo .article-checklist,
+body:not(.new-home) main.container.artigo .destaque {
+  max-width:100%;
+}
+
+body:not(.new-home) main.container.artigo .article-table,
+body:not(.new-home) main.container.artigo .tabela-multa {
+  max-width:100%;
+}
+
+@media (max-width:980px) {
+  body:not(.new-home) main.container.artigo {
+    width:calc(100% - 36px);
+    margin:34px auto 64px;
+    padding:44px 34px;
+    border-radius:22px;
+  }
+
+  body:not(.new-home) main.container.artigo > h1 {
+    font-size:clamp(34px,6vw,48px)!important;
+  }
+
+  body:not(.new-home) main.container.artigo .imagem-blog {
+    margin:30px 0 38px;
+  }
+}
+
+@media (max-width:680px) {
+  body:not(.new-home) > nav {
+    padding-right:12px;
+    padding-left:12px;
+    justify-content:flex-start;
+    overflow-x:auto;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  body:not(.new-home) > nav::-webkit-scrollbar { display:none; }
+
+  body:not(.new-home) main.container.artigo {
+    width:calc(100% - 20px)!important;
+    max-width:none;
+    margin:18px 10px 48px!important;
+    padding:30px 20px!important;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(21,50,69,.06);
+  }
+
+  body:not(.new-home) main.container.artigo > h1 {
+    margin-bottom:12px!important;
+    font-size:32px!important;
+    line-height:1.12!important;
+  }
+
+  body:not(.new-home) main.container.artigo .meta {
+    margin-bottom:24px;
+    font-size:11px;
+    line-height:1.55;
+  }
+
+  body:not(.new-home) main.container.artigo .imagem-blog {
+    margin:24px 0 30px;
+  }
+
+  body:not(.new-home) main.container.artigo .imagem-blog img {
+    aspect-ratio:16/9;
+    border-radius:12px;
+  }
+
+  body:not(.new-home) main.container.artigo .article-lead {
+    font-size:18px!important;
+    line-height:1.62!important;
+  }
+
+  body:not(.new-home) main.container.artigo > p,
+  body:not(.new-home) main.container.artigo > ul,
+  body:not(.new-home) main.container.artigo > ol,
+  body:not(.new-home) main.container.artigo .article-summary,
+  body:not(.new-home) main.container.artigo .article-note,
+  body:not(.new-home) main.container.artigo .article-checklist,
+  body:not(.new-home) main.container.artigo .article-table {
+    font-size:15.5px;
+    line-height:1.72;
+  }
+
+  body:not(.new-home) main.container.artigo > h2 {
+    margin:38px 0 14px!important;
+    font-size:25px!important;
+    line-height:1.22!important;
+  }
+
+  body:not(.new-home) main.container.artigo > h3 {
+    margin:28px 0 10px!important;
+    font-size:19px!important;
+  }
+
+  body:not(.new-home) main.container.artigo ul,
+  body:not(.new-home) main.container.artigo ol {
+    padding-left:20px;
+  }
+
+  body:not(.new-home) main.container.artigo .article-summary,
+  body:not(.new-home) main.container.artigo .article-note,
+  body:not(.new-home) main.container.artigo .article-checklist,
+  body:not(.new-home) main.container.artigo .destaque {
+    margin:26px 0;
+    padding:20px 18px;
+    border-radius:12px;
+  }
+
+  body:not(.new-home) main.container.artigo .article-note {
+    border-radius:0 12px 12px 0;
+  }
+
+  body:not(.new-home) main.container.artigo .article-table,
+  body:not(.new-home) main.container.artigo .tabela-multa {
+    display:block;
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:10px;
+  }
+
+  body:not(.new-home) main.container.artigo .article-table th,
+  body:not(.new-home) main.container.artigo .article-table td,
+  body:not(.new-home) main.container.artigo .tabela-multa th,
+  body:not(.new-home) main.container.artigo .tabela-multa td {
+    min-width:150px;
+    padding:12px 13px;
+  }
+
+  body:not(.new-home) main.container.artigo .destaque a {
+    width:100%;
+    justify-content:center;
+    text-align:center;
+  }
+}
