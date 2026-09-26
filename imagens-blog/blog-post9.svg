@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 560" role="img">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#12354d"/><stop offset="1" stop-color="#3c7da4"/></linearGradient>
+  <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f9fcfe"/><stop offset="1" stop-color="#dce9f1"/></linearGradient>
+  <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#b8d5e5" stroke-opacity=".16"/></pattern>
+  <filter id="sh"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#071c29" flood-opacity=".24"/></filter>
+</defs>
+<rect width="1400" height="560" fill="url(#bg)"/>
+<rect width="1400" height="560" fill="url(#grid)"/>
+<path d="M0 430C250 360 390 500 650 440S1080 330 1400 390V560H0Z" fill="#0d2b40" opacity=".42"/>
+
+<g filter="url(#sh)" stroke="#d9eef9" fill="none">
+  <path d="M340 430V145M520 430V105M700 430V175M880 430V130M1060 430V195" stroke-width="18"/>
+  <path d="M300 220h810M300 320h810M300 420h810" stroke-width="18"/>
+  <path d="M340 145l180-40 180 70 180-45 180 65" stroke="#86c0de" stroke-width="10"/>
+</g>
+<g fill="#f3f9fc" opacity=".95"><circle cx="340" cy="220" r="12"/><circle cx="520" cy="320" r="12"/><circle cx="880" cy="220" r="12"/></g>
+<g opacity=".34" stroke="#d7eef9" fill="none" stroke-width="2">
+  <path d="M70 85h210v120H70zM95 110h70v45H95zm95 0h65v70h-65z"/>
+  <path d="M1160 80l155 35v160l-155-32zM1185 115l102 23v70l-102-22z"/>
+</g>
+</svg>
