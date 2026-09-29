@@ -155,6 +155,24 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
     const groups=[['Contato',['Nome','WhatsApp do cliente','E-mail']],['Terreno',['Endereço do terreno','Local do terreno','Área do terreno','Dimensões do terreno','Topografia','Levantamento topográfico']],['Documentação',['Matrícula do imóvel']],['Projeto',['Tipo de construção','Outro tipo de construção','Padrão da obra']],['Necessidades',['Quartos','Suítes','Banheiros','Vagas de garagem','Ambientes desejados','Descrição do imóvel ideal']],['Escopo técnico',['Área estimada de construção','Pavimentos','Modalidade desejada','Projetos complementares','Outro projeto complementar']],['Prazo e investimento',['Previsão de início','Possui estimativa de investimento','Valor aproximado do investimento','Prioridades']]];
     function buildSummary(){const m=values(),box=document.querySelector('#summary');box.innerHTML=groups.map(([title,keys])=>{const rows=keys.filter(k=>m.has(k)).map(k=>`<p><b>${esc(k)}:</b> ${esc(m.get(k))}${k.includes('Área')&&!m.get(k).toLowerCase().includes('m²')?' m²':''}</p>`).join('');return rows?`<div class="summary-block"><h3>${title}</h3>${rows}</div>`:''}).join('')}
     let sending=false,submitted=false;
+    function requestFormSubmitActivation(payload){
+      const frameName='formsubmitActivationFrame';
+      let frame=document.querySelector('iframe[name="'+frameName+'"]');
+      if(!frame){frame=document.createElement('iframe');frame.name=frameName;frame.style.display='none';frame.setAttribute('aria-hidden','true');document.body.appendChild(frame)}
+      const activationForm=document.createElement('form');
+      activationForm.method='POST';
+      activationForm.action='https://formsubmit.co/gmartins.engcivil@gmail.com';
+      activationForm.target=frameName;
+      activationForm.style.display='none';
+      activationForm.acceptCharset='UTF-8';
+      for(const [key,value] of Object.entries(payload)){
+        const input=document.createElement('input');input.type='hidden';input.name=key;input.value=String(value);activationForm.appendChild(input);
+      }
+      const activateFlag=document.createElement('input');activateFlag.type='hidden';activateFlag.name='_subject';activateFlag.value='Ativação do checklist | g Engenharia e Arquitetura';activationForm.appendChild(activateFlag);
+      document.body.appendChild(activationForm);
+      activationForm.submit();
+      setTimeout(()=>activationForm.remove(),5000);
+    }
     async function sendChecklist(){
       if(sending||submitted)return;
       const status=document.querySelector('#copyStatus');
@@ -180,7 +198,15 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
         stepLabel.textContent='Concluído';counter.textContent='Checklist finalizado';progress.style.width='100%';
         window.scrollTo({top:0,behavior:'smooth'});
       }catch(error){
-        status.textContent='Não foi possível confirmar o envio. Suas respostas continuam aqui. Tente novamente ou entre em contato pelo e-mail gmartins.engcivil@gmail.com.';
+        try{
+          const m=values(),activationPayload={_template:'table',_url:'https://gengenhariaearquitetura.github.io/checklist.html'};
+          for(const [title,keys] of groups)for(const key of keys)if(m.has(key))activationPayload[title+' — '+key]=m.get(key)+(key.includes('Área')?' m²':'');
+          if(m.get('E-mail'))activationPayload._replyto=m.get('E-mail');
+          requestFormSubmitActivation(activationPayload);
+          status.textContent='Envio ainda não ativado. Acionei agora a confirmação do FormSubmit para gmartins.engcivil@gmail.com. Abra essa caixa de entrada (e o Spam), clique no e-mail de ativação e depois volte aqui para tentar novamente. Suas respostas permanecem preenchidas.';
+        }catch(activationError){
+          status.textContent='Não foi possível confirmar o envio nem acionar automaticamente a ativação. Suas respostas continuam aqui. Entre em contato pelo e-mail gmartins.engcivil@gmail.com.';
+        }
         status.setAttribute('role','alert');
       }finally{clearTimeout(timeout);sending=false;form.removeAttribute('aria-busy');if(!submitted){next.disabled=false;back.disabled=false;next.textContent='Tentar enviar novamente';}}
     }
