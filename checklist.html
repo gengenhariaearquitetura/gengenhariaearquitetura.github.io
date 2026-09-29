@@ -155,11 +155,6 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
     const groups=[['Contato',['Nome','WhatsApp do cliente','E-mail']],['Terreno',['Endereço do terreno','Local do terreno','Área do terreno','Dimensões do terreno','Topografia','Levantamento topográfico']],['Documentação',['Matrícula do imóvel']],['Projeto',['Tipo de construção','Outro tipo de construção','Padrão da obra']],['Necessidades',['Quartos','Suítes','Banheiros','Vagas de garagem','Ambientes desejados','Descrição do imóvel ideal']],['Escopo técnico',['Área estimada de construção','Pavimentos','Modalidade desejada','Projetos complementares','Outro projeto complementar']],['Prazo e investimento',['Previsão de início','Possui estimativa de investimento','Valor aproximado do investimento','Prioridades']]];
     function buildSummary(){const m=values(),box=document.querySelector('#summary');box.innerHTML=groups.map(([title,keys])=>{const rows=keys.filter(k=>m.has(k)).map(k=>`<p><b>${esc(k)}:</b> ${esc(m.get(k))}${k.includes('Área')&&!m.get(k).toLowerCase().includes('m²')?' m²':''}</p>`).join('');return rows?`<div class="summary-block"><h3>${title}</h3>${rows}</div>`:''}).join('')}
     let sending=false,submitted=false;
-    function setHidden(name,value){
-      let input=form.querySelector('input[type="hidden"][name="'+CSS.escape(name)+'"]');
-      if(!input){input=document.createElement('input');input.type='hidden';input.name=name;form.appendChild(input)}
-      input.value=value;
-    }
     function showSuccessState(){
       submitted=true;
       steps.forEach(s=>s.classList.remove('active'));
@@ -170,31 +165,63 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
       stepLabel.textContent='Concluído';counter.textContent='Checklist finalizado';progress.style.width='100%';
       window.scrollTo({top:0,behavior:'smooth'});
     }
+    function appendHidden(target,name,value){
+      const input=document.createElement('input');
+      input.type='hidden';input.name=name;input.value=String(value);
+      target.appendChild(input);
+    }
     function sendChecklist(){
       if(sending||submitted)return;
-      const status=document.querySelector('#copyStatus');
       const m=values();
-      sending=true;next.disabled=true;back.disabled=true;next.textContent='Enviando…';form.setAttribute('aria-busy','true');
+      const status=document.querySelector('#copyStatus');
+      sending=true;
+      next.disabled=true;back.disabled=true;
+      form.setAttribute('aria-busy','true');
 
-      form.action='https://formsubmit.co/gmartins.engcivil@gmail.com';
-      form.method='POST';
-      form.enctype='application/x-www-form-urlencoded';
-      setHidden('_subject','Novo checklist — '+(m.get('Nome')||'Cliente')+' | g Engenharia e Arquitetura');
-      setHidden('_template','table');
-      setHidden('_captcha','false');
-      setHidden('_next','https://gengenhariaearquitetura.github.io/checklist.html?enviado=1');
-      setHidden('_url','https://gengenhariaearquitetura.github.io/checklist.html');
-      if(m.get('E-mail'))setHidden('_replyto',m.get('E-mail'));
+      let frame=document.querySelector('#formsubmitFrame');
+      if(!frame){
+        frame=document.createElement('iframe');
+        frame.id='formsubmitFrame';
+        frame.name='formsubmitFrame';
+        frame.title='Envio do checklist';
+        frame.style.display='none';
+        frame.setAttribute('aria-hidden','true');
+        document.body.appendChild(frame);
+      }
 
-      status.textContent='Enviando suas informações…';
+      const postForm=document.createElement('form');
+      postForm.method='POST';
+      postForm.action='https://formsubmit.co/gmartins.engcivil@gmail.com';
+      postForm.target='formsubmitFrame';
+      postForm.acceptCharset='UTF-8';
+      postForm.style.display='none';
+
+      appendHidden(postForm,'_subject','Novo checklist — '+(m.get('Nome')||'Cliente')+' | g Engenharia e Arquitetura');
+      appendHidden(postForm,'_template','table');
+      appendHidden(postForm,'_captcha','false');
+      appendHidden(postForm,'_url','https://gengenhariaearquitetura.github.io/checklist.html');
+      if(m.get('E-mail'))appendHidden(postForm,'_replyto',m.get('E-mail'));
+
+      for(const [title,keys] of groups){
+        for(const key of keys){
+          if(m.has(key)){
+            appendHidden(postForm,title+' — '+key,m.get(key)+(key.includes('Área')?' m²':''));
+          }
+        }
+      }
+
+      document.body.appendChild(postForm);
+      HTMLFormElement.prototype.submit.call(postForm);
+
       if(typeof window.gtag==='function'){
         window.gtag('event','checklist_submit',{page_path:window.location.pathname,page_title:document.title});
         window.gtag('event','generate_lead',{currency:'BRL',lead_source:'project_checklist'});
       }
 
-      // Native browser submission is intentional: it is the most reliable FormSubmit path
-      // and also triggers FormSubmit's one-time recipient activation when needed.
-      setTimeout(()=>HTMLFormElement.prototype.submit.call(form),120);
+      status.textContent='';
+      showSuccessState();
+      form.removeAttribute('aria-busy');
+      setTimeout(()=>postForm.remove(),3000);
     }
     function advance(){if(sending||submitted)return;if(current<steps.length-1){if(!validStep())return;current++;if(current===steps.length-1)buildSummary();update()}else{sendChecklist()}}
     next.addEventListener('click',advance);back.addEventListener('click',()=>{if(!sending&&!submitted&&current>0){current--;update()}});
@@ -202,12 +229,7 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
     form.addEventListener('input',e=>{e.target.closest('.invalid')?.classList.remove('invalid');if(e.target.dataset.toggle){const target=document.getElementById(e.target.dataset.toggle);if(e.target.type==='checkbox')target.classList.toggle('show',e.target.checked);else{document.querySelectorAll(`[name="${CSS.escape(e.target.name)}"]`).forEach(r=>{if(r.dataset.toggle)document.getElementById(r.dataset.toggle)?.classList.toggle('show',r.checked)})}}if(e.target.name==='Possui estimativa de investimento'&&e.target.value==='Não')document.getElementById('budgetValue').classList.remove('show')});
     document.querySelector('#phone').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'').slice(0,11);if(v.length>6)v=`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;else if(v.length>2)v=`(${v.slice(0,2)}) ${v.slice(2)}`;else if(v.length)v=`(${v}`;e.target.value=v});
     if(document.modelContext?.registerTool){const controller=new AbortController();Promise.resolve(document.modelContext.registerTool({name:'preencher_checklist_projeto',title:'Preencher checklist do projeto',description:'Preenche campos do checklist inicial de projeto e atualiza o formulário visível.',inputSchema:{type:'object',properties:{campos:{type:'object',additionalProperties:{type:'string'}}},required:['campos'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute({campos}){if(!campos||typeof campos!=='object')throw new Error('campos deve ser um objeto');let count=0;for(const [name,value] of Object.entries(campos)){const inputs=[...form.elements].filter(el=>el.name===name);if(!inputs.length)continue;const match=inputs.find(el=>['radio','checkbox'].includes(el.type)&&el.value===value);const el=match||inputs.find(el=>!['radio','checkbox'].includes(el.type));if(el){if(match)el.checked=true;else el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));count++}}return{campos_preenchidos:count}}},{signal:controller.signal})).catch(()=>{})}
-    if(new URLSearchParams(window.location.search).get('enviado')==='1'){
-      showSuccessState();
-      history.replaceState({},document.title,window.location.pathname);
-    }else{
-      update();
-    }
+    update();
   </script>
 </body>
 </html>
