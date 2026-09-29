@@ -24,6 +24,16 @@ function atualizarPortfolio() {
 function avancar() { indice = (indice + 1) % portfolio.length; atualizarPortfolio(); }
 function voltar() { indice = (indice - 1 + portfolio.length) % portfolio.length; atualizarPortfolio(); }
 
+function trackSiteEvent(name, params = {}) {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", name, {
+      page_path: window.location.pathname,
+      page_title: document.title,
+      ...params
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const currentNav = document.querySelector("body > nav:not(.site-nav)");
   if (currentNav) {
@@ -55,6 +65,28 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.classList.toggle("is-open", !open);
     });
   }
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link) return;
+    const href = link.getAttribute("href") || "";
+    if (href.includes("wa.me/") || href.includes("api.whatsapp.com/")) {
+      trackSiteEvent("whatsapp_click", {
+        link_text: (link.textContent || "").trim().slice(0, 100),
+        link_url: href
+      });
+    }
+    if (href.includes("diagnostico.html")) {
+      trackSiteEvent("diagnostic_link_click", {
+        link_text: (link.textContent || "").trim().slice(0, 100)
+      });
+    }
+    if (href.includes("checklist.html")) {
+      trackSiteEvent("checklist_link_click", {
+        link_text: (link.textContent || "").trim().slice(0, 100)
+      });
+    }
+  });
+
   if (!document.querySelector(".floating-whatsapp") && !document.body.classList.contains("checklist-page")) {
     const whatsapp = document.createElement("a");
     whatsapp.className = "floating-whatsapp";
