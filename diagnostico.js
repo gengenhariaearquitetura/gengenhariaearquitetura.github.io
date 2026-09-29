@@ -106,6 +106,12 @@ const nextButton = document.getElementById("next-button");
 const backButton = document.getElementById("back-button");
 
 function startDiagnostic() {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "diagnostic_start", {
+      page_path: window.location.pathname,
+      page_title: document.title
+    });
+  }
   state.index = 0;
   nav.hidden = false;
   renderQuestion();
@@ -213,6 +219,14 @@ function assess() {
 
 function renderResult() {
   const results = assess();
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "diagnostic_complete", {
+      page_path: window.location.pathname,
+      page_title: document.title,
+      city: state.answers.city || "unknown",
+      property_type: state.answers.type || "unknown"
+    });
+  }
   const attentionCount = results.filter((item) => item.status === "attention").length;
   const checkCount = results.filter((item) => item.status === "check").length;
   const template = document.getElementById("result-template");
