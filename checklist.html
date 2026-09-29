@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2K31N68GT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H2K31N68GT');
+    gtag('config', 'AW-402124619');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#17384f">
@@ -159,7 +168,12 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
         const response=await fetch('https://formsubmit.co/ajax/gmartins.engcivil@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
         const result=await response.json();
         if(!response.ok||!(result.success===true||result.success==='true'))throw new Error('Envio não confirmado');
-        submitted=true;steps.forEach(s=>s.classList.remove('active'));
+        submitted=true;
+        if(typeof window.gtag==='function'){
+          window.gtag('event','checklist_submit',{page_path:window.location.pathname,page_title:document.title});
+          window.gtag('event','generate_lead',{currency:'BRL',lead_source:'project_checklist'});
+        }
+        steps.forEach(s=>s.classList.remove('active'));
         document.querySelector('.actions').style.display='none';document.querySelector('.note').style.display='none';
         document.querySelector('#successState').classList.add('show');
         const heading=document.querySelector('#successState h2');heading.tabIndex=-1;heading.focus();
