@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ["historia.html", "Quem somos"],
       ["blog.html", "Nosso Blog"],
       ["contato.html", "Contato"],
-      ["checklist.html", "Checklist de projeto"],
+      ["checklist.html", "Orçamento de projeto"],
       ["diagnostico.html", "Diagnóstico de regularização"]
     ];
     currentNav.innerHTML = links.map(([href, label]) => {
