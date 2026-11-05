@@ -205,25 +205,32 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
           }
         }
 
+        const fallbackPayload={
+          _subject:subject,
+          _template:'table',
+          _url:'https://gengenhariaearquitetura.github.io/checklist.html'
+        };
+        for(const [title,keys] of groups){
+          for(const key of keys){
+            if(m.has(key))fallbackPayload[title+' — '+key]=m.get(key)+(key.includes('Área')?' m²':'');
+          }
+        }
+        if(m.get('E-mail'))fallbackPayload._replyto=m.get('E-mail');
+
         let sent=false;
         try{
-          await sendViaWeb3Forms(web3Payload,controller.signal);
-          sent=true;
-        }catch(primaryError){
-          if(controller.signal.aborted)throw primaryError;
-          const fallbackPayload={
-            _subject:subject,
-            _template:'table',
-            _url:'https://gengenhariaearquitetura.github.io/checklist.html'
-          };
-          for(const [title,keys] of groups){
-            for(const key of keys){
-              if(m.has(key))fallbackPayload[title+' — '+key]=m.get(key)+(key.includes('Área')?' m²':'');
-            }
-          }
-          if(m.get('E-mail'))fallbackPayload._replyto=m.get('E-mail');
           await sendViaFormSubmit(fallbackPayload,controller.signal);
           sent=true;
+        }catch(primaryError){
+          clearTimeout(timeout);
+          const backupController=new AbortController();
+          const backupTimeout=setTimeout(()=>backupController.abort(),18000);
+          try{
+            await sendViaWeb3Forms(web3Payload,backupController.signal);
+            sent=true;
+          }finally{
+            clearTimeout(backupTimeout);
+          }
         }
 
         if(!sent)throw new Error('Envio não confirmado');
