@@ -15,6 +15,7 @@
   <meta name="theme-color" content="#17384f">
   <meta name="description" content="Checklist inicial para orçamento de projetos arquitetônicos e complementares da g Engenharia e Arquitetura.">
   <title>Checklist inicial | g Engenharia e Arquitetura</title>
+  <link rel="preconnect" href="https://api.web3forms.com" crossorigin>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="checklist.css">
@@ -167,18 +168,6 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
       if(!response.ok||result.success!==true)throw new Error(result.message||'Web3Forms não confirmou o envio');
       return result;
     }
-    async function sendViaFormSubmit(payload,signal){
-      const response=await fetch('https://formsubmit.co/ajax/gmartins.engcivil@gmail.com',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(payload),
-        signal
-      });
-      let result={};
-      try{result=await response.json()}catch(_){}
-      if(!response.ok||!(result.success===true||result.success==='true'))throw new Error('FormSubmit não confirmou o envio');
-      return result;
-    }
     async function sendChecklist(){
       if(sending||submitted)return;
       const status=document.querySelector('#copyStatus');
@@ -186,54 +175,23 @@ function update(){steps.forEach((s,i)=>s.classList.toggle('active',i===current))
       status.removeAttribute('role');
       sending=true;next.disabled=true;back.disabled=true;next.textContent='Enviando…';form.setAttribute('aria-busy','true');
 
-      const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),18000);
+      const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
       try{
         const m=values();
         const subject='Novo checklist — '+(m.get('Nome')||'Cliente')+' | g Engenharia e Arquitetura';
 
+        const message=groups.map(([title,keys])=>{
+          const rows=keys.filter(key=>m.has(key)).map(key=>key+': '+m.get(key)+(key.includes('Área')?' m²':''));
+          return rows.length?title+'\n'+rows.join('\n'):'';
+        }).filter(Boolean).join('\n\n');
         const web3Payload={
           access_key:'c03fcc0f-5ef0-4b98-8c99-946c100e5859',
           subject,
           from_name:'g Engenharia e Arquitetura',
           name:m.get('Nome')||'Cliente',
-          botcheck:''
+          message
         };
-        if(m.get('E-mail'))web3Payload.email=m.get('E-mail');
-        for(const [title,keys] of groups){
-          for(const key of keys){
-            if(m.has(key))web3Payload[title+' — '+key]=m.get(key)+(key.includes('Área')?' m²':'');
-          }
-        }
-
-        const fallbackPayload={
-          _subject:subject,
-          _template:'table',
-          _url:'https://gengenhariaearquitetura.github.io/checklist.html'
-        };
-        for(const [title,keys] of groups){
-          for(const key of keys){
-            if(m.has(key))fallbackPayload[title+' — '+key]=m.get(key)+(key.includes('Área')?' m²':'');
-          }
-        }
-        if(m.get('E-mail'))fallbackPayload._replyto=m.get('E-mail');
-
-        let sent=false;
-        try{
-          await sendViaFormSubmit(fallbackPayload,controller.signal);
-          sent=true;
-        }catch(primaryError){
-          clearTimeout(timeout);
-          const backupController=new AbortController();
-          const backupTimeout=setTimeout(()=>backupController.abort(),18000);
-          try{
-            await sendViaWeb3Forms(web3Payload,backupController.signal);
-            sent=true;
-          }finally{
-            clearTimeout(backupTimeout);
-          }
-        }
-
-        if(!sent)throw new Error('Envio não confirmado');
+        await sendViaWeb3Forms(web3Payload,controller.signal);
         submitted=true;
         if(typeof window.gtag==='function'){
           window.gtag('event','checklist_submit',{page_path:window.location.pathname,page_title:document.title});
